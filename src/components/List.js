@@ -9,7 +9,14 @@ export class List extends React.Component {
     const list = this.props.todos.map((o) => {
       return (
         <li>
-          #{o.id} {o.title}
+          #{o.id} {o.title}{" "}
+          <button
+            onClick={() => {
+              this.props.deleteTodo(o.id);
+            }}
+          >
+            delete
+          </button>
         </li>
       );
     });
