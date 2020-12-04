@@ -13,25 +13,28 @@ export class TodoApp extends React.Component {
   }
 
   render() {
+    const { todos } = this.state;
     return (
       <div>
         <h2>TodoApp</h2>
         <AddTodo addTodo={this.addTodo} />
-        <List todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <List todos={todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }
 
   addTodo = (title) => {
+    const { todos, nextId } = this.state;
     this.setState({
-      todos: [...this.state.todos, { id: this.state.nextId + 1, title: title }],
-      nextId: this.state.nextId + 1
+      todos: [...todos, { id: nextId + 1, title: title }],
+      nextId: nextId + 1
     });
   };
 
   deleteTodo = (id) => {
+    const { todos } = this.state;
     this.setState({
-      todos: this.state.todos.filter((o) => {
+      todos: todos.filter((o) => {
         return o.id !== id;
       })
     });
